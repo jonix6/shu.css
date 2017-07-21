@@ -1,0 +1,18 @@
+
+#{$root-selector} {
+	.annotation {
+		cursor: pointer;
+		padding: 1em;
+		width: 1em;
+		z-index: 1;
+		position: relative;
+		margin: -1em -0.9em;
+		display: inline-block
+	}
+
+	i.halfwidth {
+		font: inherit;
+		font-feature-settings: "palt";
+	}
+}
+

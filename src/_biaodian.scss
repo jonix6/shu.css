@@ -1,0 +1,63 @@
+
+//中文标点符号
+$han-biaodian: (
+	"3002",			//。句号
+	"FF0E",			//．全角英文句号
+	"FF0C",			//，全角逗号
+	"3001",			//、顿号
+	"FF1A",			//：全角冒号
+	"FF1B",			//；全角分号
+	"FF01",			//！全角叹号
+	"FF1F",			//？全角问号
+	"201C",			//“简体双引号
+	"201D",			//”简体双引号
+	"2018",			//‘简体单引号
+	"2019",			//’简体单引号
+	"300E",			//『繁体双引号
+	"300F",			//』繁体双引号
+	"300C",			//「繁体单引号
+	"300D",			//」繁体单引号
+	"FF08",			//（全角小括号
+	"FF09",			//）全角小括号
+	"FF3B",			//［全角中括号
+	"FF3D",			//］全角中括号
+	"FF5B",			//｛全角花括号
+	"FF5D",			//｝全角花括号
+	"3010",			//【实心方头括号
+	"3011",			//】实心方头括号
+	"3016",			//〖空心方头括号
+	"3017",			//〗空心方头括号
+	"3014",			//〔六角括号
+	"3015",			//〕六角括号
+	"2026",			//…省略号
+	"300A",			//《大书名号
+	"300B",			//》大书名号
+	"3008",			//〈小书名号
+	"3009",			//〉小书名号
+	"00B7",			//·间隔号
+	"2027",			//‧间隔号
+	"FF5E",			//～长连接号
+	"2014",			//—破折号
+	"2E3A"			//长破折号
+);
+
+$biaodian-range: ();
+@each $char in $han-biaodian {
+	$biaodian-range: append($biaodian-range, unquote("U+#{$char}"), comma)
+}
+
+@each $genre in (Serif, Sans) {
+	$url-fonts: ();
+	$local-fonts: ();
+	@each $ext in (".woff2", ".woff", ".otf") {
+		$url-fonts: append($url-fonts, url(url-join($font-directory, unquote("biaodian-#{to-lower-case($genre)}#{$ext}"))), comma);
+	}
+	@each $locale in ("CN", "SC", "TC") {
+		$local-fonts: append($local-fonts, local('Source Han #{$genre} #{$locale}'), comma);
+	}
+	@font-face {
+		font-family: han-punct-#{to-lower-case($genre)};
+		src: join($url-fonts, $local-fonts, comma);
+		unicode-range: $biaodian-range;
+	}
+}

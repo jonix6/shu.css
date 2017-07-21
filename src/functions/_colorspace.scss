@@ -1,0 +1,43 @@
+
+@function hsv($h, $s, $v){
+	@if $s == 0 {
+		@return hsl($h, $s, $v);
+	}
+	$i: floor($h / 30);
+	$f: $h / 30 - $i;
+	$p: $v * (1 - $s / 100%);
+	$q: $v * (1 - $s / 100% * $f);
+	$t: $v * (1 - $s / 100% * (1 - $f));
+	$i: $i % 6;
+	@if $i == 0 {
+		@return rgb($v, $t, $p);
+	}
+	@if $i == 1 {
+	    @return rgb($q, $v, $p);
+	}
+	@if $i == 2 {
+	    @return rgb($p, $v, $t);
+	}
+	@if $i == 3 {
+	    @return rgb($p, $q, $v);
+	}
+	@if $i == 4 {
+	    @return rgb($t, $p, $v);
+	}
+	@if $i == 5 {
+	    @return rgb($v, $p, $q);
+	}
+}
+
+@function mask($color, $mask, $weight: 50%){
+	$maskR: red($mask)/255;
+	$maskG: green($mask)/255;
+	$maskB: blue($mask)/255;
+	$luma: 0.2989*$maskR + 0.5870*$maskG + 0.1140*$maskB;
+
+	$r: red($color) * (1 - $weight / 100%) + red($mask) * $luma * $weight / 100%;
+	$g: green($color) * (1 - $weight / 100%) + red($mask) * $luma * $weight / 100%;
+	$b: blue($color) * (1 - $weight / 100%) + red($mask) * $luma * $weight / 100%;
+	@return rgb($r, $g, $b);
+}
+

@@ -1,0 +1,27 @@
+
+@charset "UTF-8";
+
+@import "default";
+
+@import "functions";
+
+@import "mixins";
+
+@import "palette";
+$palette: get-palette(get-safe-color());
+
+// modify default values here
+@import "preprocess";
+
+// compile styles below
+@import "fonts";
+
+@import "biaodian";
+
+@import "themes";
+
+#{$root-selector} {
+	@include simple-theme;
+}
+
+@import "layouts";

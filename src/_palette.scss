@@ -1,0 +1,15 @@
+
+
+@function get-palette($color) {
+	@return (
+		Normal: $color,
+		Lighter: mask($color, rgb(255,255,255), 20%),
+		Darker: mask($color, rgb(128,128,128), 20%),
+		Lightest: mask($color, rgb(255,255,255), 80%),
+		Darkest: mask($color, rgb(0,0,0), 20%)
+	);
+}
+
+@function get-safe-color($hue: random(360), $sat: random() * 100%) {
+	@return hsl($hue, $sat, 40% + random() * 20%);
+}

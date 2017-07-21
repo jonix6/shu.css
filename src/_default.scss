@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+$root-selector: ".shu";
+
+$font-directory: "fonts";
+$image-directory: "images";
+
+
+$han-font-sizes: (
+	XL: 63,
+	L: 54,
+	M0: 42,
+	m0: 36,
+	M1: 27.5,
+	m1: 24,
+	M2: 21,
+	m2: 18,
+	M3: 16,
+	m3: 15,
+	M4: 14,
+	m4: 12,
+	M5: 10.5,
+	m5: 9,
+	M6: 7.5,
+	m6: 6.5,
+	M7: 5.25,
+	M8: 4.5
+);
+
+$default-font-size: map-get($han-font-sizes, m4);
+
+$default-content-layout: (
+	font-size: map-get($han-font-sizes, m4),
+	line-height: map-get($han-font-sizes, M2)
+);
+
+$default-title-layout: (
+	h1: (
+		font-size: map-get($han-font-sizes, M2),
+		line-height: map-get($han-font-sizes, M1)
+	),
+	h2: (
+		font-size: map-get($han-font-sizes, M3),
+		line-height: map-get($han-font-sizes, m1)
+	),
+	h3: (
+		font-size: map-get($han-font-sizes, M4),
+		line-height: map-get($han-font-sizes, M2)
+	),
+	h4: (
+		font-size: map-get($han-font-sizes, m4),
+		line-height: map-get($han-font-sizes, M2)
+	),
+	h5: (
+		font-size: map-get($han-font-sizes, M5),
+		line-height: map-get($han-font-sizes, M2)
+	),
+	h6: (
+		font-size: map-get($han-font-sizes, M6),
+		line-height: map-get($han-font-sizes, m2)
+	)
+);

@@ -1,0 +1,10 @@
+
+@mixin font-scaling($ratio, $line-height: $default-line-height) {
+	font-size: $ratio * 1em;
+	line-height: 1 + ($line-height - 1) / $ratio;
+}
+
+@mixin han-size-scaling($font-size, $line-height-size) {
+	font-size: map-get($han-font-sizes, $font-size) / $default-font-size * 1em;
+	line-height: map-get($han-font-sizes, $line-height-size) / map-get($han-font-sizes, $font-size);
+}

@@ -1,0 +1,283 @@
+
+// basic theme
+// ============= MODIFY WITH CAUTION ===============
+
+$default-line-height: (16 / 9);
+
+@mixin basic-theme() {
+	display: block;
+	position: relative;
+	
+	max-width: 40rem;
+	margin: 0 auto;
+	padding: 0 1rem;
+	
+	font-family: han-punct-sans, sans-serif;
+	line-height: $default-line-height;
+	letter-spacing: 0.0225em;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	-webkit-hyphens: auto;
+
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+
+	// paragraph
+	%para-normalize {
+		display: block;
+		
+		max-width: 100%;
+		margin: 0;
+		padding: 0;
+
+		line-height: inherit;
+		color: inherit;
+		
+		border: none;
+		background-color: inherit;
+	}
+
+	p {
+		@extend %para-normalize;
+		margin-bottom: 1em;
+
+		color: hsl(0, 0%, 24%);
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		&:not([lang^="en"]) {
+			text-align: justify;
+		}
+	}
+
+	%header-normalize {
+		@extend %para-normalize;
+		margin-top: 1em;
+		margin-bottom: 1em;
+		font-weight: 600;
+	}
+
+	h1 {
+		@extend %header-normalize;
+		@include han-size-scaling(M2, M1);
+	}
+
+	h2 {
+		@extend %header-normalize;
+		@include han-size-scaling(M3, m1);
+	}
+
+	h3 {
+		@extend %header-normalize;
+		@include han-size-scaling(M4, M2);
+	}
+
+	h4 {
+		@extend %header-normalize;
+		@include han-size-scaling(m4, M2);
+	}
+
+	h5 {
+		@extend %header-normalize;
+		@include han-size-scaling(M5, M2);
+	}
+
+	h6 {
+		@extend %header-normalize;
+		@include han-size-scaling(M6, m2);
+	}
+
+	hr {
+		@extend %para-normalize;
+		height: 1em;
+		margin-bottom: 1em;
+
+		border: none;
+		background: linear-gradient(currentColor, currentColor) no-repeat center / 100% 0.1em;
+	}
+
+	pre {
+		@extend %para-normalize;
+		overflow: auto;
+
+		white-space: pre;
+	}
+
+	// block
+	%block-normalize {
+		display: block;
+
+		font: inherit;
+		
+		border: none;
+		background-color: inherit;
+	}
+
+	blockquote {
+		@extend %block-normalize;
+		margin-top: 1.5em;
+		margin-right: 2em;
+		margin-bottom: 1.5em;
+		margin-left: 2em;
+	}
+
+	figure {
+		@extend %block-normalize;
+		margin-top: 1.5em;
+		margin-right: 2em;
+		margin-bottom: 1.5em;
+		margin-left: 2em;
+
+		figcaption {
+			@extend %block-normalize;
+
+			@include font-scaling(0.875, 1.5);
+			color: hsl(0, 0, 50%);
+			text-align: left;
+		}
+	}
+
+	// list
+	%list-normalize {
+		@extend %block-normalize;
+		padding-left: 2em;
+		counter-reset: list;
+	}
+
+	%li {
+		@extend %block-normalize;
+		text-indent: -2em;
+
+		&:before {
+			display: inline-block;
+			width: 1.5em;
+			text-align: right;
+			white-space: nowrap;
+			margin-right: 0.5em;
+		}
+	}
+
+	ol {
+		@extend %list-normalize;
+		> li {
+			@extend %li;
+			&:before {
+				content: counter(list, decimal)'.';
+				counter-increment: list;
+			}
+		}
+	}
+
+	ul {
+		@extend %list-normalize;
+		> li {
+			@extend %li;
+			&:before {
+				content: counter(list, disc);
+				counter-increment: list;
+			}
+		}
+	}
+
+	dl {
+		@extend %list-normalize;
+		margin-top: 1.5em;
+		margin-bottom: 1.5em;
+
+		> dt {
+			@extend %block-normalize;
+			margin-left: -2em;
+			font-weight: bolder;
+			margin-top: 1.5em;
+
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+		> dd {
+			@extend %block-normalize;
+			margin: 0;
+			color: hsl(0, 0, 24%);
+		}
+	}
+	// inline
+	%inline-normalize {
+		display: inline;
+		vertical-align: baseline;
+
+		font: inherit;
+		word-wrap: break-word;
+		-webkit-text-decoration-skip: objects;
+
+		background-color: inherit;
+	}
+
+	span {
+		@extend %inline-normalize;
+	}
+
+	a {
+		@extend %inline-normalize;
+		background: linear-gradient(currentColor, currentColor) repeat-x left bottom / auto 2px;
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+	b, strong {
+		@extend %inline-normalize;
+		font-weight: bolder;
+
+	}
+
+	i, em, dfn {
+		@extend %inline-normalize;
+		font-style: italic;
+	}
+
+
+	code, kbd, samp {
+		@extend %inline-normalize;
+		font-family: monospace, sans-serif;
+	}
+
+	%script {
+		position: relative;
+
+		font-size: 0.75em;
+		line-height: 1px;
+	}
+
+	sub {
+		@extend %script;
+		bottom: -0.25ex;
+	}
+
+	sup {
+		@extend %script;
+		top: -0.5ex;
+	}
+
+	// special
+	img {
+		display: inline-block;
+		max-width: 100%;
+		margin: 0;
+		padding: 0;
+		font-size: 1em;
+		line-height: 0;
+		border: none;
+	}
+	audio {
+		display: inline-block;
+		&:not([controls]) {
+			display: none;
+		}
+	}
+	video {
+		display: inline-block;
+	}
+	@content;
+}
+

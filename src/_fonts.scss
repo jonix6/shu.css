@@ -1,0 +1,65 @@
+
+//中文基本字体
+$han-fonts: (
+
+//衬线——宋体
+serif: (
+	"Source Han Serif CN",		//思源宋体中文
+	"Source Han Serif SC",		//思源宋体简
+	"Songti SC",				//宋体-简
+	STSong,						//华文宋体
+	"AR PL New Sung",			//文鼎PL新宋
+	"AR PL SungtiL GB",			//文鼎PL简报宋
+	NSimSun,					//新宋体
+	SimSun,						//宋体
+	"TW\-Sung",					//全字库正宋体
+	"WenQuanYi Bitmap Song",	//文泉驿点阵宋体
+	"AR PL UMing CN",			//文鼎PL明体
+	"AR PL UMing HK",			//文鼎PL明体HK
+	"AR PL UMing TW",			//文鼎PL明体TW
+	"AR PL UMing TW MBE",		//文鼎PL明体
+	PMingLiU,					//新细明体
+	MingLiU						//细明体
+	),
+
+//非衬线——黑体
+sans: (
+	-apple-system,				//苹果默认字体
+	"PingFang SC",				//苹方字体
+	"Hiragino Sans GB",			//冬青黑体
+	"Source Han Sans CN",		//思源黑体中文
+	"Source Han Sans SC",		//思源黑体简
+	"Microsoft YaHei",			//微软雅黑
+	"Wenquanyi Micro Hei",		//文泉驿微米黑
+	"WenQuanYi Zen Hei",		//文泉驿正黑体
+	STHeiti,					//华文黑体
+	SimHei						//黑体
+	),
+
+//手写——楷体
+cursive: (
+	"Kaiti SC",					//楷体-简
+	STKaiti,					//华文楷体
+	"AR PL UKai CN",			//文鼎PL楷体
+	"AR PL UKai HK",
+	"AR PL UKai TW",
+	"AR PL UKai TW MBE",
+	"AR PL KaitiM GB",
+	KaiTi,						//楷体
+	KaiTi_GB2312,				//楷体_GB2312
+	DFKai-SB,					//台湾标楷体
+	"TW\-Kai"					//全字库正楷体
+	)
+
+);
+
+@each $genre in (serif, sans, cursive) {
+	$src: ();
+	@each $family in map-get($han-fonts, $genre) {
+		$src: append($src, local( $family ), comma);
+	}
+	@font-face {
+		font-family: han-#{$genre};
+		src: $src;
+	}
+}

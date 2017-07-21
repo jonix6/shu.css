@@ -1,0 +1,15 @@
+
+@function url-join($path, $parts...) {
+	@each $part in $parts {
+		@if str-slice($part, 0) == '/' or $part == '' {
+			$path: unquote("#{$path}#{$part}");
+		} @else {
+			$path: unquote("#{$path}#{unquote('/')}#{$part}");
+		}
+	}
+	@return quote($path);
+}
+
+// a {
+// 	background: url(url-join("a","","哈 哈.jpg"));
+// }

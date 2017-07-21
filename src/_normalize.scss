@@ -1,0 +1,48 @@
+
+%reset-font-styles {
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	font-stretch: normal;
+	font-size: medium;
+	line-height: normal;
+	font-feature-settings: normal;
+	font-kerning: auto;
+}
+
+%reset-text-styles {
+	direction: inherit;
+
+	font: inherit;
+	color: inherit;
+	-webkit-text-fill-color: currentColor;
+	-webkit-text-stroke: 0 currentColor;
+
+	letter-spacing: normal;
+	word-spacing: normal;
+
+	text-align: match-parent;
+	text-decoration: none;
+	text-indent: 0;
+	text-justify: auto;
+	text-transform: none;
+
+	overflow-wrap: normal;
+	word-wrap: normal;
+
+	white-space: normal;
+	line-break: auto;
+	word-break: normal;
+	hyphens: manual;
+}
+
+%reset-block-styles {
+	display: block;
+	
+	width: 100%;
+	max-width: none;
+	margin: 0;
+	padding: 0;
+
+	background: inherit;
+}

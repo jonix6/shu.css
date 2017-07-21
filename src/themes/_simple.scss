@@ -1,0 +1,86 @@
+
+@import "./basic";
+
+@mixin simple-theme {
+	@include basic-theme {
+		font-family: han-punct-sans, "Helvetica Neue", han-sans, sans-serif;
+
+		%header {
+			font-weight: 500;
+		}
+		h1 {
+			padding-top: 0.9em;
+			margin-top: 0;
+			margin-bottom: 1.2em;
+			border-top: 0.3em solid map-get($palette, Darker);
+			@extend %header;
+		}
+		h2 {
+			border-bottom: 1px solid map-get($palette, Darker);
+			@extend %header;
+		}
+		h3 {
+			margin-top: 1.7em;
+			margin-bottom: 0.3em;
+			margin-left: -1em;
+			padding-left: 0.6em;
+
+			border-left: 0.4em solid map-get($palette, Darker);
+			@extend %header;
+		}
+		h4, h5, h6 {
+			@extend %header;
+		}
+		blockquote {
+			border-left: 0.3em solid map-get($palette, Normal);
+			padding-left: 1.2em;
+			margin-right: 1em;
+			margin-left: -0.5em;
+			background-color: map-get($palette, Lightest);
+		}
+		figure {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+
+			margin-left: 0;
+			margin-right: 0;
+
+			figcaption {
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				overflow: hidden;
+
+				margin-top: 0.7em;
+			}
+		}
+		%dark-text {
+			color: map-get($palette, Darker);
+		}
+		li {
+			&:before {
+				@extend %dark-text;
+			}
+		}
+		a {
+			@extend %dark-text;
+		}
+		b {
+			@extend %dark-text;
+		}
+		strong {
+			@extend %dark-text;
+		}
+		em {
+			font: inherit;
+			-webkit-text-emphasis: filled circle;
+			-webkit-text-emphasis-position: under;
+			-webkit-text-emphasis-color: map-get($palette, Darker);
+		}
+		img {
+			max-height: 70vh;
+		}
+	};
+}
